@@ -1,0 +1,638 @@
+/* Dashboard Styles
+------------------------------------------*/
+
+/* Color variables */
+:root {
+    --sidebar-width: 250px;
+    --topbar-height: 60px;
+    --primary: #F48915;
+    --primary-dark: #d87b10;
+    --secondary: #1A1A1A;
+    --secondary-light: #292929;
+    --text-primary: #FFFFFF;
+    --text-secondary: #CCCCCC;
+    --text-muted: #999999;
+    --border-color: #333333;
+    
+    /* Role-based colors */
+    --member-color: #28a745;
+    --member-color-light: rgba(40, 167, 69, 0.1);
+    --member-color-medium: rgba(40, 167, 69, 0.2);
+    
+    --admin-color: #dc3545;
+    --admin-color-light: rgba(220, 53, 69, 0.1);
+    --admin-color-medium: rgba(220, 53, 69, 0.2);
+    
+    --trainer-color: #0d6efd;
+    --trainer-color-light: rgba(13, 110, 253, 0.1);
+    --trainer-color-medium: rgba(13, 110, 253, 0.2);
+    
+    --light-text: #e0e0e0;
+}
+
+/* Base styling */
+body {
+    background-color: #121212;
+    color: var(--text-primary);
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+.dashboard-container {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* Sidebar Styles */
+.sidebar {
+    width: var(--sidebar-width);
+    background-color: var(--secondary);
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 100;
+    transition: all 0.3s;
+    border-right: 1px solid var(--border-color);
+    overflow-y: auto;
+}
+
+.sidebar-header {
+    padding: 20px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.sidebar-brand {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sidebar-brand img {
+    height: 30px;
+}
+
+.sidebar-menu {
+    padding: 15px 0;
+}
+
+.sidebar-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar-menu li {
+    margin-bottom: 5px;
+}
+
+/* Role-based menu styling */
+.sidebar-menu a {
+    display: flex;
+    align-items: center;
+    padding: 12px 20px;
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: all 0.3s;
+    position: relative;
+    font-size: 14px;
+}
+
+/* Member role styling */
+body.role-member .sidebar-menu a:hover {
+    color: var(--member-color);
+    background-color: var(--member-color-light);
+}
+
+body.role-member .sidebar-menu a.active {
+    color: var(--member-color);
+    background-color: var(--member-color-medium);
+    border-right: 3px solid var(--member-color);
+}
+
+/* Admin role styling */
+body.role-admin .sidebar-menu a:hover {
+    color: var(--admin-color);
+    background-color: var(--admin-color-light);
+}
+
+body.role-admin .sidebar-menu a.active {
+    color: var(--admin-color);
+    background-color: var(--admin-color-medium);
+    border-right: 3px solid var(--admin-color);
+}
+
+/* Trainer role styling */
+body.role-trainer .sidebar-menu a:hover {
+    color: var(--trainer-color);
+    background-color: var(--trainer-color-light);
+}
+
+body.role-trainer .sidebar-menu a.active {
+    color: var(--trainer-color);
+    background-color: var(--trainer-color-medium);
+    border-right: 3px solid var(--trainer-color);
+}
+
+/* Default fallback */
+.sidebar-menu a:hover {
+    color: var(--primary);
+    background-color: rgba(244, 137, 21, 0.1);
+}
+
+.sidebar-menu a.active {
+    color: var(--primary);
+    background-color: rgba(244, 137, 21, 0.15);
+    border-right: 3px solid var(--primary);
+}
+
+.sidebar-menu .menu-icon {
+    margin-right: 10px;
+    width: 20px;
+    text-align: center;
+    font-size: 16px;
+}
+
+/* Collapsed Sidebar */
+.sidebar-collapsed .sidebar {
+    left: -250px;
+}
+
+.sidebar-collapsed .main-content {
+    margin-left: 0;
+    width: 100%;
+}
+
+.sidebar-collapsed .topbar {
+    left: 0;
+}
+
+/* Main Content Area */
+.main-content {
+    margin-left: var(--sidebar-width);
+    width: calc(100% - var(--sidebar-width));
+    transition: all 0.3s;
+}
+
+/* Content Area */
+.content {
+    padding: 80px 20px 20px;
+}
+
+/* Top Navigation Bar */
+.topbar {
+    height: var(--topbar-height);
+    background-color: var(--secondary);
+    position: fixed;
+    top: 0;
+    right: 0;
+height: 70px;
+    left: var(--sidebar-width);
+    z-index: 99;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    border-bottom: 1px solid var(--border-color);
+    transition: all 0.3s;
+}
+
+.toggle-sidebar {
+    font-size: 20px;
+    color: var(--text-secondary);
+    cursor: pointer;
+    margin-right: 15px;
+}
+
+.topbar-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text-primary); /* Ensuring text is white */
+}
+
+.topbar-right {
+    display: flex;
+    align-items: center;
+}
+
+/* User elements with role-based styling */
+.profile-img {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px;
+}
+
+body.role-member .profile-img {
+    border: 2px solid var(--member-color);
+}
+
+body.role-admin .profile-img {
+    border: 2px solid var(--admin-color);
+}
+
+body.role-trainer .profile-img {
+    border: 2px solid var(--trainer-color);
+}
+
+.username {
+    color: var(--light-text);
+    font-weight: 500;
+}
+
+.profile-avatar {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 0 auto 20px;
+    display: block;
+}
+
+body.role-member .profile-avatar {
+    border: 4px solid var(--member-color);
+}
+
+body.role-admin .profile-avatar {
+    border: 4px solid var(--admin-color);
+}
+
+body.role-trainer .profile-avatar {
+    border: 4px solid var(--trainer-color);
+}
+
+.profile-name {
+    color: var(--light-text);
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+}
+
+/* Badge styling for user roles */
+.badge.role-badge {
+    padding: 0.35em 0.65em;
+    font-size: 0.75em;
+}
+
+.badge.role-member {
+    background-color: var(--member-color);
+    color: white;
+}
+
+.badge.role-admin {
+    background-color: var(--primary);
+    color: white;
+}
+
+.badge.role-trainer {
+    background-color: var(--trainer-color);
+    color: white;
+}
+
+/* Card and Form Styling */
+.card {
+    background-color: var(--secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+.card-header:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 2px;
+    width: 50px;
+    background: var(--primary);
+}
+
+.card-header h5,
+.card h5, 
+.modal-title,
+.card-body h5,
+.page-header h4 {
+    color: var(--light-text);
+    margin-bottom: 0;
+}
+
+.card-body {
+    padding: 20px;
+    position: relative;
+}
+
+.stat-card:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background-color: var(--primary);
+    opacity: 0.8;
+}
+
+.stat-card:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.3);
+}
+
+body.role-member .stat-card:before {
+    background-color: var(--member-color);
+}
+
+body.role-admin .stat-card:before {
+    background-color: var(--primary);
+}
+
+body.role-trainer .stat-card:before {
+    background-color: var(--trainer-color);
+}
+
+.stat-card .card-body {
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    z-index: 1;
+}
+
+.stat-number {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: var(--light-text);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    letter-spacing: 0.5px;
+}
+
+.stat-title {
+    font-size: 16px;
+    color: var(--primary);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.stat-icon {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 38px;
+    opacity: 0.8;
+    color: var(--primary);
+}
+
+.stat-icon i {
+    filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.3));
+}
+
+body.role-member .stat-icon, 
+body.role-member .stat-title {
+    color: var(--member-color);
+}
+
+body.role-admin .stat-icon, 
+body.role-admin .stat-title {
+    color: var(--primary);
+}
+
+body.role-trainer .stat-icon, 
+body.role-trainer .stat-title {
+    color: var(--trainer-color);
+}
+
+/* Form Controls */
+.form-control, 
+.form-select {
+    background-color: #292929;
+    border: 1px solid var(--border-color);
+    color: var(--text-primary) !important;
+}
+
+.form-control:focus, 
+.form-select:focus {
+    background-color: #333;
+    color: var(--text-primary);
+    border-color: var(--primary);
+    box-shadow: none;
+}
+
+.form-label {
+    color: var(--light-text);
+}
+
+/* Profile details */
+.profile-info-item {
+    margin-bottom: 15px;
+}
+
+.profile-info-label {
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin-bottom: 5px;
+}
+
+.profile-info-value {
+    color: var(--text-primary);
+}
+
+/* Navigation elements */
+.breadcrumb-item, 
+.breadcrumb-item.active {
+    color: var(--text-primary);
+}
+
+.breadcrumb-item a {
+    color: var(--primary);
+    text-decoration: none;
+}
+
+.breadcrumb-item a:hover {
+    text-decoration: underline;
+}
+
+/* Dropdown styling */
+.dropdown-menu {
+    background-color: var(--secondary);
+    border: 1px solid var(--border-color);
+}
+
+.dropdown-item {
+    color: var(--text-primary);
+}
+
+.dropdown-item:hover {
+    background-color: var(--secondary-light);
+    color: var(--primary);
+}
+
+/* Button styling with role colors */
+.btn-role-primary {
+    background-color: var(--primary);
+    border-color: var(--primary);
+    color: white;
+}
+
+.btn-role-primary:hover {
+    background-color: var(--primary-dark);
+    border-color: var(--primary-dark);
+    color: white;
+}
+
+body.role-member .btn-role {
+    background-color: var(--member-color);
+    border-color: var(--member-color);
+    color: white;
+}
+
+body.role-member .btn-role:hover {
+    background-color: darken(var(--member-color), 10%);
+    border-color: darken(var(--member-color), 10%);
+}
+
+body.role-admin .btn-role {
+    background-color: var(--admin-color);
+    border-color: var(--admin-color);
+    color: white;
+}
+
+body.role-admin .btn-role:hover {
+    background-color: darken(var(--admin-color), 10%);
+    border-color: darken(var(--admin-color), 10%);
+}
+
+body.role-trainer .btn-role {
+    background-color: var(--trainer-color);
+    border-color: var(--trainer-color);
+    color: white;
+}
+
+body.role-trainer .btn-role:hover {
+    background-color: darken(var(--trainer-color), 10%);
+    border-color: darken(var(--trainer-color), 10%);
+}
+
+/* Table styling */
+.table {
+    color: var(--text-primary) !important;
+    --bs-table-color: var(--text-primary) !important;
+    --bs-table-bg: var(--secondary);
+    --bs-table-hover-bg: var(--secondary-light);
+    --bs-table-hover-color: var(--light-text);
+    border-color: var(--border-color);
+}
+
+.table thead th {
+    background-color: rgba(0, 0, 0, 0.2);
+    color: var(--primary);
+    border-bottom: 2px solid var(--border-color);
+    font-weight: 600;
+    padding: 12px;
+    font-size: 14px;
+}
+
+.table tbody td {
+    padding: 12px;
+    border-color: var(--border-color);
+    vertical-align: middle;
+    color: var(--text-primary) !important;
+}
+
+.table-dark {
+    background-color: var(--secondary);
+    color: var(--text-primary) !important;
+    border-color: var(--border-color);
+}
+
+.table-striped > tbody > tr:nth-of-type(odd) > * {
+    background-color: rgba(255, 255, 255, 0.05);
+    color: var(--text-primary) !important;
+}
+
+.table-striped > tbody > tr:nth-of-type(even) > * {
+    color: var(--text-primary) !important;
+}
+
+/* Status indicators */
+.status-active {
+    color: var(--member-color);
+}
+
+.status-inactive {
+    color: var(--text-muted);
+}
+
+.status-pending {
+    color: #ffc107;
+}
+
+/* User dropdown styling */
+.user-dropdown {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 4px;
+    transition: all 0.2s;
+}
+
+.user-dropdown:hover {
+    background-color: var(--secondary-light);
+}
+
+/* Secure account section styling */
+.security-icon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    margin-right: 15px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+}
+
+/* Modal styling */
+.modal-content {
+    background-color: var(--secondary);
+    border: 1px solid var(--border-color);
+}
+
+.btn-close-white {
+    filter: invert(1) grayscale(100%) brightness(200%);
+}
+
+/* Profile-specific styling */
+.page-header {
+    margin-bottom: 20px;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .sidebar {
+        left: -250px;
+    }
+    
+    .sidebar.active {
+        left: 0;
+    }
+    
+    .main-content {
+        margin-left: 0;
+        width: 100%;
+    }
+    
+    .topbar {
+        left: 0;
+    }
+}
